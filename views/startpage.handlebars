@@ -1,0 +1,25 @@
+<div class="container">
+
+    {{#each postData}}
+        <table class="table table-bordered my-4">
+            <thead>
+                <tr>
+                    <th>
+                        <div class="text-left">Author: {{admin}}</div> 
+                        <div class="text-right">Datum: {{datum}}</div> 
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td class="text-center"><h4>{{title}}</h4></td>
+                </tr>
+                <tr>
+                    <td class="text-left">{{text}}</td>
+                </tr>
+            </tbody>
+        </table>
+    {{/each}}
+
+</div>
