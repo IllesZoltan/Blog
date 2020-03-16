@@ -1,25 +1,15 @@
-<div class="container">
+<div class="container border" style="width: 1000px;">
+    <div class="row border-bottom" style="height: 80px">
+        <div class="col my-4 text-center">
+            <h3>Main Page</h3>
+        </div>
+    </div>
 
-    {{#each postData}}
-        <table class="table table-bordered my-4">
-            <thead>
-                <tr>
-                    <th>
-                        <div class="text-left">Author: {{admin}}</div> 
-                        <div class="text-right">Datum: {{datum}}</div> 
-                    </th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr>
-                    <td class="text-center"><h4>{{title}}</h4></td>
-                </tr>
-                <tr>
-                    <td class="text-left">{{text}}</td>
-                </tr>
-            </tbody>
-        </table>
-    {{/each}}
+    <div class="row">
+        <input type="button" onclick="location.href='/posts'" value="Posts">
+    </div>
+    <div class="row">
+        <input type="button" onclick="location.href='/loginView'" value="Login">
+    </div>
 
 </div>

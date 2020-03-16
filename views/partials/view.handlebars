@@ -1,0 +1,28 @@
+<form action="/login" method="POST">
+    <div class="container" style="width: 300px;">
+        <div class="row border-bottom" style="height: 80px">
+            <div class="col my-4 text-center">
+                <h3>Login Page</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="usrname">Username: </label>
+                <label for="password">Password: </label>
+            </div>
+            <div class="col-8">
+                <input type="text" name="username" id="usrname">
+                <input type="password" name="password" id="passwrd">
+            </div>
+        </div>
+        <div class="row">
+            <input type="submit" value="Login">
+        </div>
+
+        <div class="row p-3" style="height: 50px;">
+            <h6 class="text-danger">{{warning}}</h6>
+            <h6 class="text-success">{{success}}</h6>
+        </div>
+
+    </div>
+</form>

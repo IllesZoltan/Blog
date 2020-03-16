@@ -1,5 +1,4 @@
 const express = require('express');
-const app = express();
 
 const postData = [
     {
@@ -19,6 +18,6 @@ const postData = [
 
 module.exports = class Posts {
     getPosts(req, res) {
-        res.render('startpage', { postData });
+        res.render('posts', { postData });
     }
 }
