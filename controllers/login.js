@@ -10,6 +10,7 @@ module.exports = class Login {
     getLogin(req, res) {
         const {username, password} = req.body;
         
+
         if(username === userData.userDataName && password === userData.userDataPassword){
             res.render('admin')
         }else{

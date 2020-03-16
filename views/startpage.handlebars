@@ -9,7 +9,10 @@
         <input type="button" onclick="location.href='/posts'" value="Posts">
     </div>
     <div class="row">
-        <input type="button" onclick="location.href='/loginView'" value="Login">
+        <form action="/loginView/start" method="get">
+            <input type="hidden" name="#">
+            <input type="submit" value="Login">
+        </form>
     </div>
 
 </div>

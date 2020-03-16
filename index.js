@@ -32,7 +32,7 @@ app.get('/', startPage.start)
 
 app.get('/posts', postsController.getPosts)
 
-app.get('/loginView', loginViewController.getView)
+app.get('/loginView/:state', loginViewController.getView)
 
 app.post('/login', loginController.getLogin)
 
