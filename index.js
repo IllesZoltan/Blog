@@ -22,6 +22,7 @@ const port = process.env.port || 4040;
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(require('cookie-parser')());
 
 app.engine('handlebars', hdlbrs())
 app.set('view engine', 'handlebars')
