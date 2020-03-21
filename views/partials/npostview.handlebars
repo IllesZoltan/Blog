@@ -17,7 +17,7 @@
         </div>
         <div class="row">
             <div class="col-6">
-                <input type="button" id="discardForm" onclick="location.href='/admin'" value="Discard">  
+                <input type="button" id="discardForm" onclick="discardValidation()" value="Discard">  
             </div>
             <div class="col-6">
                 <input type="submit" id="submitForm" value="New Post">  
@@ -39,11 +39,16 @@
         let pTitle = document.getElementById('posttitle').value;
         let pContent = document.getElementById('postcontent').value;
 
-console.log('new post: ',pTitle,pContent)
-
         if(!pTitle || !pContent){
             event.preventDefault();
             document.getElementById('infoText').innerHTML='All fields are required!'
         }
     })
+
+    function discardValidation(){
+        if(confirm('Confirm discard ?')){
+            location.href='/admin'
+        }
+    }
+
 </script>
