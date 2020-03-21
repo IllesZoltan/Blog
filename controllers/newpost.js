@@ -1,14 +1,6 @@
-const fs = require('fs');
 const sql = require('sqlite3').verbose();
 const db = new sql.Database('./postarchive.db');
 
-//const posts = [];
-//const pD = JSON.parse(fs.readFileSync('./postdata.json'));
-
-// pD.forEach(element => {
-//     posts.push(element)
-    
-// });
 
 let theID = 0;
 
@@ -41,14 +33,14 @@ module.exports = class NewPost {
         NewP.title = posttitle;
         NewP.text = postcontent;
 
-        //posts.push(NewP)
-        //fs.writeFileSync('./postdata.json', JSON.stringify(posts))
+        console.log('title:   ',posttitle);
+        
 
 
-        db.serialize(function(){
-            db.prepare('INSERT INTO posts VALUES (?,?,?,?,?)')
-              .run(`${NewP.id}`,`${NewP.title}`,`${NewP.admin}`,`${NewP.datum}`,`${NewP.text}`);
-        })
+        // db.serialize(function(){
+        //     db.prepare('INSERT INTO posts VALUES (?,?,?,?,?)')
+        //       .run(`${NewP.id}`,`${NewP.title}`,`${NewP.admin}`,`${NewP.datum}`,`${NewP.text}`);
+        // })
 
         res.render('startpage', {infotext});
     }

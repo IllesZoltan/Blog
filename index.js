@@ -63,11 +63,3 @@ app.listen(port, (err) => {
         console.log(`App listens to port: ${port}`);
     }
 })
-
-
-
-
-
-
-// (/login?error=credentials)
-// timestamp epoch

@@ -1,10 +1,43 @@
-<form action="/newpost" method="POST">
+<!-- Quill link -->
+<link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
+
+<form action="/newpost" method="post">
+    <div class="row">
+        <div id="toolbar">
+            <button class="ql-bold">B</button>
+            <button class="ql-italic">I</button>
+        </div>
+    </div>
+    <div class="row">
+        <div id="editor" style="font-size: large;">
+            <div><input type="hidden" id="qtitle" name="qtitle" value="Hello">Hello</div>
+            <div><input type="hidden" id="qtext" name="qtext" value="Text">Text</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <input type="button" id="discardForm" onclick="location.href='/admin'" value="Discard">
+        </div>
+        <div class="col-6">
+            <input type="submit" id="submitForm" value="New Post">
+        </div>
+    </div>
+</form>
+
+
+
+
+
+
+{{!-- <form action="/newpost" method="POST">
     <div class="container" style="width: 300px;">
         <div class="row border-bottom" style="height: 80px">
             <div class="col my-4 text-center">
                 <h3>New Post Page</h3>
             </div>
         </div>
+
         <div class="row">
             <div class="col-4">
                 <label for="posttitle">Title: </label>
@@ -17,10 +50,10 @@
         </div>
         <div class="row">
             <div class="col-6">
-                <input type="button" id="discardForm" onclick="location.href='/admin'" value="Discard">  
+                <input type="button" id="discardForm" onclick="location.href='/admin'" value="Discard">
             </div>
             <div class="col-6">
-                <input type="submit" id="submitForm" value="New Post">  
+                <input type="submit" id="submitForm" value="New Post">
             </div>
         </div>
 
@@ -29,21 +62,31 @@
         </div>
 
     </div>
-</form>
+</form> --}}
+
+<!-- Quill library -->
+<script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
 
 <script>
-    document.getElementById('infoText').innerHTML='';
+    const editor = new Quill('#editor', {
+        modules: { toolbar: '#toolbar' },
+        theme: 'snow'
+    });
+</script>
+
+<script>
+    //document.getElementById('infoText').innerHTML = '';
     let btn = document.getElementById('submitForm');
 
-    btn.addEventListener('click', function(event){
-        let pTitle = document.getElementById('posttitle').value;
-        let pContent = document.getElementById('postcontent').value;
+    btn.addEventListener('click', function (event) {
+        let pTitle = document.getElementById('qtitle').value;
+        let pContent = document.getElementById('qtext').value;
 
-console.log('new post: ',pTitle,pContent)
+        console.log('new post: ', pTitle, pContent)
 
-        if(!pTitle || !pContent){
+        if (!pTitle || !pContent) {
             event.preventDefault();
-            document.getElementById('infoText').innerHTML='All fields are required!'
+            //document.getElementById('infoText').innerHTML = 'All fields are required!'
         }
     })
 </script>
