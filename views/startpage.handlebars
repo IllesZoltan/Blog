@@ -8,11 +8,13 @@
     <div class="row">
         <input type="button" onclick="location.href='/posts'" value="Posts">
     </div>
+
     <div class="row">
-        <form action="/loginView/start" method="get">
-            <input type="hidden" name="#">
-            <input type="submit" value="Login">
-        </form>
+        <input type="button" onclick="location.href='/loginView/start'" value="Login">
+    </div>
+
+    <div class="row p-3" style="height: 50px;">
+        <h6 class="text-info" id="infoText">{{infotext}}</h6>
     </div>
 
 </div>

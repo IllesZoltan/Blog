@@ -4,7 +4,7 @@ const userData = {
     userDataPassword: 'admin'
 }
 
-
+const AUTH_COOKIE = 'authcookie'
 
 module.exports = class Login {
     getLogin(req, res) {

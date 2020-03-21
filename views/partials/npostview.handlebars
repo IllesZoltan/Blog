@@ -1,0 +1,49 @@
+<form action="/newpost" method="POST">
+    <div class="container" style="width: 300px;">
+        <div class="row border-bottom" style="height: 80px">
+            <div class="col my-4 text-center">
+                <h3>New Post Page</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <label for="posttitle">Title: </label>
+                <label for="postcontent">Content: </label>
+            </div>
+            <div class="col-8">
+                <input type="text" name="posttitle" id="posttitle">
+                <textarea name="postcontent" id="postcontent"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <input type="button" id="discardForm" onclick="location.href='/admin'" value="Discard">  
+            </div>
+            <div class="col-6">
+                <input type="submit" id="submitForm" value="New Post">  
+            </div>
+        </div>
+
+        <div class="row p-3" style="height: 50px;">
+            <h6 class="text-info" id="infoText"></h6>
+        </div>
+
+    </div>
+</form>
+
+<script>
+    document.getElementById('infoText').innerHTML='';
+    let btn = document.getElementById('submitForm');
+
+    btn.addEventListener('click', function(event){
+        let pTitle = document.getElementById('posttitle').value;
+        let pContent = document.getElementById('postcontent').value;
+
+console.log('new post: ',pTitle,pContent)
+
+        if(!pTitle || !pContent){
+            event.preventDefault();
+            document.getElementById('infoText').innerHTML='All fields are required!'
+        }
+    })
+</script>
