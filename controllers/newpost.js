@@ -25,15 +25,15 @@ function currentDate(){
 
 module.exports = class NewPost {
     posting(req, res) {
-        const { posttitle, postcontent } = req.body;
+        const { posttitle, posttext } = req.body;
         const infotext = 'Adding new post was successful !'
         NewP.admin = 'admin';
         NewP.datum = currentDate();
         NewP.id = theID;
         NewP.title = posttitle;
-        NewP.text = postcontent;
+        NewP.text = posttext;
 
-        console.log('title:   ',posttitle);
+        console.log('title:   ',posttitle,posttext);
         
 
 
