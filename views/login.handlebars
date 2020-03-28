@@ -1,7 +1,63 @@
 <div class="container border" style="width: 400px;">
     <div class="row">
         <div class="col text-center">
-            {{> view}}
+
+
+            <form action="/login" method="POST">
+                <div class="container" style="width: 300px;">
+                    <div class="row border-bottom" style="height: 80px">
+                        <div class="col my-4 text-center">
+                            <h3>Login Page</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <label for="usrname">Username: </label>
+                            <label for="password">Password: </label>
+                        </div>
+                        <div class="col-8">
+                            <input type="text" name="username" id="usrname" value="{{uName}}">
+                            <input type="password" name="password" id="passwrd" value="{{pWord}}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="submit" id="submitForm" value="Login">
+                        </div>
+                    </div>
+
+                    <div class="row p-3" style="height: 50px;">
+                        <h6 class="text-danger" id="warningText">{{warning}}</h6>
+                        <h6 class="text-success" id="successText">{{success}}</h6>
+                    </div>
+                </div>
+            </form>
+
+            <div class="row">
+                <input type="button" id="startPage" value="Start Page" onclick="location.href='/'">
+            </div>
+
+
         </div>
     </div>
 </div>
+
+
+<script>
+    let buttn = document.getElementById("submitForm");
+
+    buttn.addEventListener('click', function (event) {
+        let usrName = document.getElementById('usrname').value;
+        let passWord = document.getElementById('passwrd').value;
+        let displWarning = document.getElementById('warningText');
+        let displSuccess = document.getElementById('successText');
+
+        console.log('username: ', usrName)
+
+        if (!usrName || !passWord) {
+            event.preventDefault();
+            displWarning.innerHTML = 'Username or Password required !';
+            displSuccess.innerHTML = '';
+        }
+    })
+</script>

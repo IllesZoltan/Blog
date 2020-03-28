@@ -14,22 +14,25 @@ const newPost = new newP();
 const newPV = require('./controllers/newpostview');
 const newPostView = new newPV();
 
-const pController = require('./controllers/posts');
-const postsController = new pController();
+const posts = require('./controllers/posts');
+const postsController = new posts();
 
-const lController = require('./controllers/login');
-const loginController = new lController();
+const logIn = require('./controllers/login');
+const loginController = new logIn();
 
-const lViewController = require('./controllers/loginview');
-const loginViewController = new lViewController();
+const loginView = require('./controllers/loginview');
+const loginViewController = new loginView();
 
+const logOut = require('./controllers/logout');
+const logoutController = new logOut();
 
 const url = 'http://localhost:4040'
 
 const app = express();
 const port = process.env.port || 4040;
 
-
+const AUTH_COOKIE = 'authcookie'
+const warning = 'Login required !'
 
 
 app.use(express.json())
@@ -41,19 +44,26 @@ app.set('view engine', 'handlebars')
 
 
 
+function authCheck(req, res, next){
+    const authCookie = req.cookies[AUTH_COOKIE];
+    if(!authCookie){
+        res.render('login', {warning});
+    }
+    const session = authCookie[AUTH_COOKIE];
+    req.session = session;
+    next();
+}
+
+
+
 app.get('/', startPage.start)
-
-app.get('/admin', adminPage.start)
-
+app.get('/admin', authCheck, adminPage.start)
 app.get('/newpostview', newPostView.show)
-
 app.post('/newpost', newPost.posting)
-
 app.get('/posts', postsController.getPosts)
-
-app.get('/loginView/:state', loginViewController.getView)
-
-app.post('/login', loginController.getLogin)
+app.get('/loginView', loginViewController.show)
+app.post('/login', loginController.show)
+app.get('/logout', authCheck, logoutController.show)
 
 
 app.listen(port, (err) => {
