@@ -13,7 +13,7 @@ module.exports = class Posts {
                 row.forEach((elem) => {
                     posts.push(elem)
 console.log('pDs:  ',posts);
-                    res.render('posts', { posts });
+                    res.render('postlist', { posts });
                 })
             })
         })

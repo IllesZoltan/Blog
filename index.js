@@ -14,6 +14,9 @@ const newPost = new newP();
 const newPV = require('./controllers/newpostview');
 const newPostView = new newPV();
 
+const postList = require('./controllers/postlist');
+const postListController = new postList();
+
 const posts = require('./controllers/posts');
 const postsController = new posts();
 
@@ -60,6 +63,7 @@ app.get('/', startPage.start)
 app.get('/admin', authCheck, adminPage.start)
 app.get('/newpostview', newPostView.show)
 app.post('/newpost', newPost.posting)
+app.get('/postlist', postListController.getPosts)
 app.get('/posts', postsController.getPosts)
 app.get('/loginView', loginViewController.show)
 app.post('/login', loginController.show)

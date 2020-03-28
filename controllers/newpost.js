@@ -33,14 +33,11 @@ module.exports = class NewPost {
         NewP.title = posttitle;
         NewP.text = posttext;
 
-        console.log('title:   ',posttitle,posttext);
-        
 
-
-        // db.serialize(function(){
-        //     db.prepare('INSERT INTO posts VALUES (?,?,?,?,?)')
-        //       .run(`${NewP.id}`,`${NewP.title}`,`${NewP.admin}`,`${NewP.datum}`,`${NewP.text}`);
-        // })
+        db.serialize(function(){
+            db.prepare('INSERT INTO posts VALUES (?,?,?,?,?)')
+              .run(`${NewP.id}`,`${NewP.title}`,`${NewP.admin}`,`${NewP.datum}`,`${NewP.text}`);
+        })
 
         res.render('startpage', {infotext});
     }
