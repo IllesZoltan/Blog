@@ -1,20 +1,26 @@
 <div class="container border" style="width: 1000px;">
-    <div class="row border-bottom" style="height: 80px">
+    <div class="row bg-info" style="height: 300px">
+        <div class="col">
+        <div class="row">
         <div class="col my-4 text-center">
-            <h3>Main Page</h3>
+            <h3>Main Blog Page</h3>
+            <hr style="color: black;">
+        </div>
+        </div>
+        </div>
+    </div>
+    <div class="row p-3" style="background-color: rgb(162, 218, 201);">
+        <div class="col-6">
+            <input type="button" class="btn btn-secondary" onclick="location.href='/postlist'" value="Posts"><br><br>
+            <input type="button" class="btn btn-primary" onclick="location.href='/newpostview'" value="New Posts">
+        </div>
+
+        <div class="col-6 text-right">
+            <input type="button" class="btn btn-info" onclick="location.href='/loginView'" value="Login">
         </div>
     </div>
 
-    <div class="row">
-        <input type="button" onclick="location.href='/posts'" value="Posts">
+    <div class="row p-3" style="height: 50px; background: rgb(144, 187, 166)">
+        <h6 class="text-info" id="infoText">{{newPostMessage}}</h6>
     </div>
-
-    <div class="row">
-        <input type="button" onclick="location.href='/loginView'" value="Login">
-    </div>
-
-    <div class="row p-3" style="height: 50px;">
-        <h6 class="text-info" id="infoText">{{infotext}}</h6>
-    </div>
-
 </div>

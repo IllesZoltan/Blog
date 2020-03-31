@@ -12,11 +12,13 @@ const NewP = {
     text: ""
 }
 
-function currentDate(){
+const AUTH_COOKIE = 'authcookie'
+
+function currentDate() {
     let newDate = new Date();
     theID = newDate.valueOf();
-    let dd = String(newDate.getDate()).padStart(2,'0');
-    let mm = String(newDate.getMonth()).padStart(2,'0');
+    let dd = String(newDate.getDate()).padStart(2, '0');
+    let mm = String(newDate.getMonth() + 1).padStart(2, '0');
     let yyyy = newDate.getFullYear();
     newDate = `${yyyy}.${mm}.${dd}.`;
 
@@ -24,21 +26,31 @@ function currentDate(){
 }
 
 module.exports = class NewPost {
-    posting(req, res) {
+    entry(req, res) {
         const { posttitle, posttext } = req.body;
-        const infotext = 'Adding new post was successful !'
-        NewP.admin = 'admin';
+
+        const authCookie = req.cookies[AUTH_COOKIE]
+        let session = undefined;
+        if(authCookie){
+            session = authCookie.user;
+        }
+
+        const newPostMessage = 'Adding new post was successful !'
+        const username = session.userDataName;
+
+        NewP.admin = username;
         NewP.datum = currentDate();
         NewP.id = theID;
         NewP.title = posttitle;
         NewP.text = posttext;
 
+        
 
-        db.serialize(function(){
+        db.serialize(function () {
             db.prepare('INSERT INTO posts VALUES (?,?,?,?,?)')
-              .run(`${NewP.id}`,`${NewP.title}`,`${NewP.admin}`,`${NewP.datum}`,`${NewP.text}`);
+                .run(`${NewP.id}`, `${NewP.title}`, `${NewP.admin}`, `${NewP.datum}`, `${NewP.text}`);
         })
 
-        res.render('startpage', {infotext});
+        res.render('messagepage', { newPostMessage, username });
     }
 }

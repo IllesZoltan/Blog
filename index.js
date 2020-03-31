@@ -47,14 +47,15 @@ app.set('view engine', 'handlebars')
 
 
 
-function authCheck(req, res, next){
+function authCheck(req, res, next) {
     const authCookie = req.cookies[AUTH_COOKIE];
-    if(!authCookie){
-        res.render('login', {warning});
+    if (!authCookie) {
+        res.render('login', { warning });
+    } else {
+        const session = authCookie.user;
+        req.session = session;
+        next();
     }
-    const session = authCookie[AUTH_COOKIE];
-    req.session = session;
-    next();
 }
 
 
@@ -62,8 +63,8 @@ function authCheck(req, res, next){
 app.get('/', startPage.start)
 app.get('/admin', authCheck, adminPage.start)
 app.get('/newpostview', newPostView.show)
-app.post('/newpost', newPost.posting)
-app.get('/postlist', postListController.getPosts)
+app.post('/newpost', authCheck, newPost.entry)
+app.get('/postlist', authCheck, postListController.showPostTitles)
 app.get('/posts', postsController.getPosts)
 app.get('/loginView', loginViewController.show)
 app.post('/login', loginController.show)

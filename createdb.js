@@ -11,4 +11,4 @@ function toDel (){
     })
 };
 
-//toDel();
+toDel();
