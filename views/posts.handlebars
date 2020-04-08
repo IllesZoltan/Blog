@@ -1,0 +1,32 @@
+<div class="container border">
+    <div class="row border-bottom" style="height: 80px">
+        <button onclick="window.location.href= '/postlist'" style="height: fit-content; margin: 3px">Post List</button>
+        <div class="col my-4 text-center">
+            <h3>Post</h3>
+        </div>
+    </div>
+
+    {{#each posts}}
+        <table class="table table-bordered my-4">
+            <thead>
+                <tr>
+                    <th>
+                        <div class="text-left">Author: {{author}}</div> 
+                        <div class="text-right">Datum: {{created_at}}</div> 
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td class="text-center"><h4>{{title}}</h4></td>
+                </tr>
+                <tr>
+                    <td class="text-left">{{text}}</td>
+                </tr>
+            </tbody>
+        </table>
+    {{/each}}
+
+</div>
+

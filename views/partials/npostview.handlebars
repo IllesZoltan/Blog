@@ -1,0 +1,123 @@
+<div class="container" style="width: 600px;">
+    <div class="row border-bottom" style="height: 100px;">
+        <div class="col my-4 text-center">
+            <h3>New Post Page</h3>
+            <p>Logged in as: <b>{{username}}</b></p>
+        </div>
+    </div>
+
+    <div class="row border my-3">
+        <div class="col-12" style="width: 200px;">
+            <button onclick="execCmd('bold')">B</button>
+            <button onclick="execCmd('italic')">I</button>
+            <button onclick="execCmd('underline')">U</button>
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col-12">
+            <div class="p-1" contenteditable="true">
+                <h5 id="dispTitle">Title</h5>
+            </div>
+            <div id="dispText" class="p-3 text-left" contenteditable="true" style="height: 150px;">Some text</div>
+        </div>
+    </div>
+</div>
+
+<form action="/newpost" method="POST" style="border: 0px;">
+    <input type="hidden" id="posttitle" name="posttitle">
+    <input type="hidden" id="posttext" name="posttext">
+
+    <div class="row">
+        <div class="col-6">
+            <input type="button" id="discardForm" onclick="location.href='/admin'" value="Discard">
+        </div>
+        <div class="col-6">
+            <input type="submit" id="submitForm" value="New Post">
+        </div>
+    </div>
+</form>
+<div class="row p-3" style="height: 50px;">
+    <h6 class="text-info" id="infoText"></h6>
+</div>
+
+
+
+
+
+<script>
+    document.getElementById('infoText').innerHTML = '';
+    let btn = document.getElementById('submitForm');
+    console.log('posting: ')
+    btn.addEventListener('click', function (event) {
+        document.getElementById('posttitle').value = 'Tittles'
+        let pTitle = document.getElementById('dispTitle').innerHTML;
+        let pContent = document.getElementById('dispText').innerHTML;
+        document.getElementById('posttitle').value = pTitle;
+        document.getElementById('posttext').value = pContent;
+        console.log('new post: ', pTitle, pContent)
+        if (!pTitle || !pContent) {
+        event.preventDefault();
+        document.getElementById('infoText').innerHTML = 'All fields are required!'
+        }
+    })
+    function execCmd(command){
+        document.execCommand(command, false, null)
+    }
+</script>
+
+
+
+
+
+
+{{!-- <!-- Quill link -->
+<link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
+<link rel="stylesheet" href="css/quill.snow.css">
+<form action="/newpost" method="post" style="height: 220px;">
+    <div id="toolbar" class="sc-toolbar-container toolbar">
+        <div class="sc-format-group">
+            <span class="sc-bold sc-format-button">B</span>
+            <span class="sc-italic sc-format-button">I</span>
+            <span class="sc-strike sc-format-button">S</span>
+            <span class="sc-underline sc-format-button">U</span>
+            <span class="sc-link sc-format-button">L</span>
+            <span class="sc-format-separator">O</span>
+        </div>
+        <select class="sc-size">
+            <option value="small">Small</option>
+            <option value="normal">Normal</option>
+            <option value="large">Large</option>
+        </select>
+    </div>
+    <div id="editor" style="font-size: large; text-align: center; height: 60%; border: 0px;">
+        <h3 id="qtitle" data-name="this.value">Hello</h3>
+        <h3 id="qtext">Bello</h3>
+    </div>
+    <div>
+        <input type="hidden" id="qttitle" name="qttitle" value="">
+    </div>
+    <br>
+    <div>
+        <input type="hidden" id="qttext" name="qttext" value="">
+    </div>
+    <div class="row my-2 text-center footer d-flex flex-row justify-content-end align-items-center">
+        <div class="col-6">
+            <input type="button" id="discardForm" onclick="location.href='/admin'" value="Discard">
+        </div>
+        <div class="col-6">
+            <input type="submit" id="submitForm" value="New Post">
+        </div>
+    </div>
+</form>
+<!-- Quill library -->
+<script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
+<script src="js/quill.js"></script> 
+<script>
+    const editor = new Quill('#editor', {
+        modules: {
+            toolbar: '#toolbar',
+            'link-tooltip': true
+        },
+        theme: 'snow'
+    });
+</script> --}}

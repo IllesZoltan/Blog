@@ -1,0 +1,49 @@
+<div class="container border">
+    <div class="row border-bottom" style="height: 80px">
+        <button onclick="window.location.href= '/'" style="height: fit-content; margin: 3px">Start Page</button>
+        <div class="col my-4 text-center">
+            <h3>Post List</h3>
+        </div>
+    </div>
+
+    {{#each posts}}
+
+    <div class="container">
+        <div class="row border-bottom">
+            <div class="col-8">
+                <div class="text-left">
+                    <a href="/posts?id={{id}}"><h4>{{title}}</h4>(Author: {{author}})</a>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="text-right">Datum: {{created_at}}</div>
+            </div>
+        </div>
+    </div>
+
+    {{/each}}
+
+</div>
+
+
+
+
+{{!-- <table class="table table-bordered my-4">
+            <thead>
+                <tr>
+                    <th>
+                        <div class="text-left">Author: {{author}}</div> 
+                        <div class="text-right">Datum: {{created_at}}</div> 
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td class="text-center"><h4>{{title}}</h4></td>
+                </tr>
+                <tr>
+                    <td class="text-left">{{text}}</td>
+                </tr>
+            </tbody>
+        </table> --}}
